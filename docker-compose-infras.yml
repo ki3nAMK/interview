@@ -1,0 +1,60 @@
+networks:
+  global-network: null
+
+services:
+  chat-app-redis:
+    image: redis:7.2.4-alpine3.19
+    container_name: chat-app-redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - global-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "256M"
+
+  chat-app-mongodb:
+    image: mongo:latest
+    container_name: chat-app-mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - /root/infrastructure/data/mongo:/data/db
+    networks:
+      - global-network
+    command: ["mongod", "--replSet", "rs0"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "256M"
+
+  chat-app:
+    image: ${CHAT_APP_TAG}
+    container_name: chat-app
+    restart: always
+    depends_on:
+      - chat-app-mongodb
+      - chat-app-redis
+    ports:
+      - 8080:8080
+    networks:
+      - global-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "512M"
+        reservations:
+          cpus: "0.25"
+          memory: "256M"
