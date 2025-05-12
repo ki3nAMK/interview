@@ -1,13 +1,14 @@
-FROM node:22-alpine as build
+FROM node:22-alpine AS build
 
 RUN apk add curl bash git
+
 RUN curl -sfL https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin
 
-RUN corepack enable && corepack prepare yarn@stable --activate
+# RUN corepack enable && corepack prepare yarn@stable --activate
 
-RUN yarn set version 1.22.22
+# RUN yarn set version 1.22.22
 
-RUN yarn -v
+# RUN yarn -v
 
 RUN npm i -g @nestjs/cli
 
@@ -15,7 +16,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . .
 
@@ -30,13 +31,13 @@ RUN yarn build
 # RUN rm -rf node_modules/rxjs/_esm5/
 # RUN rm -rf node_modules/rxjs/_esm2015/
 RUN rm -rf node_modules
-RUN yarn install --production --frozen-lockfile
+RUN yarn install --production
 
 FROM node:22-alpine AS deploy
 
-RUN corepack enable && corepack prepare yarn@stable --activate
+# RUN corepack enable && corepack prepare yarn@stable --activate
 
-RUN yarn set version 1.22.22
+# RUN yarn set version 1.22.22
 
 WORKDIR /app
 
