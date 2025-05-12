@@ -1,0 +1,17 @@
+services:
+  interview-chat-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    container_name: interview-chat-app
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    networks:
+      - chat_app_network
+
+networks:
+  chat_app_network:
+    external: true

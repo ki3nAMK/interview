@@ -1,0 +1,16 @@
+services:
+  chat-app-mongodb:
+    image: mongo:latest
+    container_name: chat-app-mongodb
+    restart: unless-stopped
+    command: ['mongod', '--replSet', 'rs0']
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongo:/data/db
+    networks:
+      - chat_app_network
+
+networks:
+  chat_app_network:
+    external: true

@@ -1,0 +1,15 @@
+export enum MessageType {
+  TEXT = 'text',
+  IMAGE = 'image',
+  VIDEO = 'video',
+  AUDIO = 'audio',
+  FILE = 'file',
+  LOCATION = 'location',
+  STICKER = 'sticker',
+  POLL = 'poll',
+  REACTION = 'reaction',
+  MENTION = 'mention',
+  LINK_PREVIEW = 'link_preview',
+  GIF = 'gif',
+  VOICE_NOTE = 'voice_note',
+}

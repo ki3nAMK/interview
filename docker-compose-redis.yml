@@ -1,0 +1,14 @@
+networks:
+  chat_app_network:
+    external: true
+
+services:
+  chat-app-redis:
+    image: redis:7.2.4-alpine3.19
+    container_name: chat-app-redis
+    restart: unless-stopped
+    command: redis-server
+    ports:
+      - 6379:6379
+    networks:
+      - chat_app_network

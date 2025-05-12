@@ -1,0 +1,17 @@
+port: 8080
+api_docs_path: /api/docs
+is_production: false
+
+redis:
+  host: localhost
+  port: 6379
+  db: "0"
+
+mongo:
+  uri: mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0
+  port: 27017
+  db: chat-app
+
+jwt:
+  accessTokenExpiresIn: 3 # days
+  refreshTokenExpiresIn: 30 # days
