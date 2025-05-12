@@ -40,7 +40,7 @@ services:
           memory: "256M"
 
   chat-app:
-    image: kndev2004/interview:interview-chat-app-main-1d72cb8d6244b62c28a23f8f4360814cef9dd0ef
+    image: kndev2004/interview:interview-chat-app-main-23c24425bc333c7be66554339a863c809cb05875
     container_name: chat-app
     restart: always
     depends_on:
