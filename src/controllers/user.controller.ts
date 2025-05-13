@@ -10,10 +10,15 @@ import {
   HttpStatus,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiBearerAuth(SessionType.ACCESS)
-@ApiTags('Users')
+@ApiTags('User')
 @UseGuards(JwtAccessTokenGuard)
 @Controller({
   path: 'users',
@@ -24,6 +29,10 @@ export class UserController {
 
   @ApiOkResponse({ type: () => User })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Get user information',
+    description: 'Get user information by userId',
+  })
   @Get('/me')
   async getMe(@CurrentUser() userId: string) {
     const result = await this.userService.getById(userId);

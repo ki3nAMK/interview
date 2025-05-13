@@ -18,7 +18,12 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiBearerAuth(SessionType.ACCESS)
 @Controller({
@@ -36,6 +41,10 @@ export class ChatController {
 
   @ApiOkResponse({ type: () => Conversation })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Get conversation detail',
+    description: 'Get conversation detail by conversationId',
+  })
   @Get('/conversations/:conversationId')
   async getConversation(
     @CurrentUser() userId: string,
@@ -49,6 +58,10 @@ export class ChatController {
 
   @ApiOkResponse({ type: () => OkResponse })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Add new conversation',
+    description: 'Add new conversation, can handle if group exists',
+  })
   @Post('/conversations')
   async createNewConversation(
     @CurrentUser() userId: string,
@@ -59,6 +72,10 @@ export class ChatController {
 
   @ApiOkResponse({ type: () => UserListResponse })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Get online user list',
+    description: 'Get online user list by userId',
+  })
   @Get('/online-users')
   async getOnlineUsers(@CurrentUser() userId: string) {
     return await this.userService.findAllUsers(userId);

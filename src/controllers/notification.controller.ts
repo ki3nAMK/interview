@@ -10,7 +10,12 @@ import {
   HttpStatus,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiBearerAuth(SessionType.ACCESS)
 @Controller({
@@ -24,6 +29,10 @@ export class NotificationController {
 
   @ApiOkResponse({ type: () => NotificationListResponse })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: 'Get notification detail',
+    description: 'Get notification detail by userId',
+  })
   @Get()
   async getAllNotifications(@CurrentUser() userId: string) {
     return await this.notificationService.getAllNotifications(userId);

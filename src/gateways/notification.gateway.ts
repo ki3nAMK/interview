@@ -60,11 +60,13 @@ export class NotificationGateway
     forEach(memberIds, (memberId) => {
       this.server.to(memberId).emit('notification', {
         message,
+        createdAt: new Date().toISOString(),
       });
     });
 
     this.server.to(userId).emit('notification', {
       message: `Successfully created a new group`,
+      createdAt: new Date().toISOString(),
     });
   }
 }

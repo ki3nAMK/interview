@@ -30,6 +30,13 @@ export const configSwagger = (app: INestApplication<any>) => {
       scheme: 'bearer',
       bearerFormat: 'JWT',
     })
+    .addTag('User', "User's information related endpoints")
+    .addTag('Auth', 'Authentication related endpoints')
+    .addTag(
+      'Chat',
+      'Conversation-related endpoints handle retrieving online user information, creating new chat groups, and fetching group details',
+    )
+    .addTag('Notifications', 'Notification-related endpoints handle retrieving the list of notifications')
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config, {});

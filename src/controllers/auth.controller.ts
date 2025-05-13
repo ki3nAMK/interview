@@ -17,7 +17,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 
 @Controller({
   version: '1',
@@ -28,6 +28,7 @@ export class AuthController {
 
   @ApiOkResponse({ type: () => RegisterResponse })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Login system', description: 'Login' })
   @Post('/sign-up')
   async register(@Body() dto: RegisterRequest): Promise<RegisterResponse> {
     const result = await this.authService.register(dto);
@@ -36,6 +37,7 @@ export class AuthController {
 
   @ApiOkResponse({ type: () => LoginResponse })
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Register system', description: 'Register' })
   @Post('/sign-in')
   async login(@Body() body: LoginRequest): Promise<LoginResponse> {
     const result = await this.authService.login(body);
@@ -46,6 +48,7 @@ export class AuthController {
   @ApiOkResponse({ type: () => OkResponse })
   @UseGuards(JwtAccessTokenGuard)
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Logout system', description: 'Logout' })
   @Post('/sign-out')
   async logout(
     @CurrentUser() userId: string,

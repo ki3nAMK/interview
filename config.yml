@@ -3,13 +3,13 @@ api_docs_path: /api/docs
 is_production: false
 
 redis:
-  host: chat-app-redis
+  host: localhost
   port: 6379
   password: ''
   db: 0
 
 mongo:
-  uri: mongodb://chat-app-mongodb:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0
+  uri: mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0
   port: 27017
   db: chat-app
 

@@ -41,6 +41,7 @@ import { NotificationsService } from './services/notification.service';
 import { NotificationGateway } from './gateways/notification.gateway';
 import { NotificationsRepository } from './repositories/notification.repo';
 import { NotificationController } from './controllers/notification.controller';
+import { WsDocsController } from './controllers/socket.controller';
 
 @Module({
   imports: [
@@ -116,6 +117,7 @@ import { NotificationController } from './controllers/notification.controller';
     UserController,
     ChatController,
     NotificationController,
+    WsDocsController, // * for swagger docs only
   ],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: AppClassSerializerInterceptor },
