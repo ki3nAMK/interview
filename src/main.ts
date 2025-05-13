@@ -26,7 +26,8 @@ async function bootstrap() {
     }),
   );
 
-  app.use(helmet());
+  // ! disable for swaagger allowance
+  // app.use(helmet());
 
   app.use(cookieParser());
 
