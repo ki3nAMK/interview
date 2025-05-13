@@ -41,6 +41,7 @@ export const configSwagger = (app: INestApplication<any>) => {
     {
       swaggerOptions: {
         persistAuthorization: true,
+        schemes: ['http'],
       },
     },
   );
