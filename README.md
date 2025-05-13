@@ -1,6 +1,6 @@
 # Interview Chat App
 
-Một ứng dụng chat được xây dựng với kiến trúc microservice, sử dụng Docker, Redis, MongoDB và Node.js. Hướng dẫn này sẽ giúp bạn chạy ứng dụng ở môi trường local.
+Một ứng dụng chat được xây dựng với kiến trúc DDD, sử dụng Docker, Redis, MongoDB và Node.js. Hướng dẫn này sẽ giúp bạn chạy ứng dụng ở môi trường local.
 
 ---
 
